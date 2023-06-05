@@ -10,6 +10,9 @@ from . import __version__
 """ Macaulay2 Jupyter Kernel
 """
 
+TIMEOUT_DEFAULT = 1000000
+
+
 
 class M2Config:
     """"""
@@ -19,7 +22,7 @@ class M2Config:
         parser = argparse.ArgumentParser(usage=argparse.SUPPRESS)
         config = configparser.ConfigParser(allow_no_value=True)
 
-        parser.add_argument('--timeout', type=int, default=2)
+        parser.add_argument('--timeout', type=int, default=TIMEOUT_DEFAULT)
         parser.add_argument('--timeout_startup', type=int, default=5)
         parser.add_argument('--mode', choices=['default', 'original', 'texmacs', 'pretty'],
                             default='default')
@@ -66,7 +69,7 @@ class M2Interp:
     patt_input = re.compile(br'^i(\d+)\s:')
     debug = False
 
-    def __init__(self, execpath=pexpect.which('M2'), timeout=4, configpath=None):
+    def __init__(self, execpath=pexpect.which('M2'), timeout=TIMEOUT_DEFAULT, configpath=None):
         """"""
         self.conf = M2Config(execpath, configpath)
         self.proc = None
