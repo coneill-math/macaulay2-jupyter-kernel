@@ -219,7 +219,7 @@ class M2Kernel(Kernel):
     language_version = '1.13.0.1'  # "defining implementation" version
     language_info = {
         'name': 'Macaulay2',
-        'mimetype': 'text/x-macaulay2',
+        # 'mimetype': 'text/x-macaulay2',
         'file_extension': '.m2',
         'codemirror_mode': 'macaulay2',
         # 'pigments_lexer': None,
