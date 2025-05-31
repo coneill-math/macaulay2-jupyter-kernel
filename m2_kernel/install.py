@@ -17,7 +17,7 @@ from notebook import __path__ as notebook_dir
 kernel_json = {
     "argv": [sys.executable, "-m", "m2_kernel", "-f", "{connection_file}"],
     "display_name": "M2",
-    # "language": "text/x-macaulay2",
+    "language": "text/x-macaulay2",
     "codemirror_mode": "macaulay2",
 }
 
