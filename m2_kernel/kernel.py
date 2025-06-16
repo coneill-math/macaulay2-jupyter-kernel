@@ -158,7 +158,7 @@ class M2Interp:
                 break
 
         while not EOT:
-            line = ""
+            line = b''
             try:
                 for testline in self.proc:
                     line = testline[:-2]
