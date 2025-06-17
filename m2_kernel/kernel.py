@@ -15,10 +15,12 @@ TIMEOUT_DEFAULT = 1000000
 
 
 class M2Config:
-    """"""
+    """
+    """
 
     def __init__(self, execpath, configpath=os.getenv('M2JK_CONFIG')):
-        """"""
+        """
+        """
         parser = argparse.ArgumentParser(usage=argparse.SUPPRESS)
         config = configparser.ConfigParser(allow_no_value=True)
 
@@ -48,7 +50,8 @@ class M2Config:
         self.args = args
 
     def read(self, line):
-        """"""
+        """
+        """
         self.config.remove_section('temp')
         try:
             self.config.read_string('[temp]\n'+line)
@@ -70,7 +73,8 @@ class M2Interp:
     debug = False
 
     def __init__(self, execpath=pexpect.which('M2'), timeout=TIMEOUT_DEFAULT, configpath=None):
-        """"""
+        """
+        """
         self.conf = M2Config(execpath, configpath)
         self.proc = None
         self.proc_command = self.conf.args.execpath
@@ -81,14 +85,16 @@ class M2Interp:
         }
 
     def start(self):
-        """"""
+        """
+        """
         if not (self.proc is None):
             return
         self.proc = pexpect.spawn(self.proc_command, **self.proc_kwargs)
         self.proc.delaybeforesend = None
 
     def preprocess(self, code, usemagic, printwidth=80):
-        """"""
+        """
+        """
         magic_lines = []
         code_lines = []
 
@@ -120,7 +126,8 @@ class M2Interp:
         return ''
 
     def execute(self, code, lastonly=True, usemagic=True):
-        """"""
+        """
+        """
         clean_code = self.preprocess(code, usemagic=usemagic)
         if self.debug: print(clean_code)
         if not clean_code: return []
@@ -282,7 +289,8 @@ class M2Kernel(Kernel):
         self.send_response(self.iopub_socket, 'stream', content)
 
     def mock_execute(self, code):
-        """"""
+        """
+        """
         output_lines = self.interp.execute(code, lastonly=False)
         return self.process_output(output_lines)
 
